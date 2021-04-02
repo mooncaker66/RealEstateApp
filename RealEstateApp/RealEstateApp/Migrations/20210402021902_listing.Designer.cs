@@ -9,8 +9,8 @@ using RealEstateApp.Entities;
 namespace RealEstateApp.Migrations
 {
     [DbContext(typeof(RealEstateDbContext))]
-    [Migration("20210323192349_init")]
-    partial class init
+    [Migration("20210402021902_listing")]
+    partial class listing
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,8 +45,8 @@ namespace RealEstateApp.Migrations
                     b.Property<bool>("HasPool")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PropertyType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PropertyType")
+                        .HasColumnType("int");
 
                     b.Property<int>("SquareFeet")
                         .HasColumnType("int");
@@ -77,13 +77,52 @@ namespace RealEstateApp.Migrations
                             HasBasement = false,
                             HasParking = true,
                             HasPool = true,
-                            PropertyType = "condo",
+                            PropertyType = 1,
                             SquareFeet = 3000,
                             State = "FL",
                             Street = "1234 low St",
                             YearBuilt = 1996,
                             ZipCode = "33510"
                         });
+                });
+
+            modelBuilder.Entity("RealEstateApp.Entities.Listing", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("HouseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ListingType")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("HouseId");
+
+                    b.ToTable("Listings");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            HouseId = 1,
+                            ListingType = 1
+                        });
+                });
+
+            modelBuilder.Entity("RealEstateApp.Entities.Listing", b =>
+                {
+                    b.HasOne("RealEstateApp.Entities.House", "House")
+                        .WithMany()
+                        .HasForeignKey("HouseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
                 });
 #pragma warning restore 612, 618
         }

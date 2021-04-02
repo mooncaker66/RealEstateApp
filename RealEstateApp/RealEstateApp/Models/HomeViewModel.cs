@@ -8,12 +8,15 @@ namespace RealEstateApp.Models
 {
     public class HomeViewModel
     {
-        public string SearchInput { get; set; }
-        public List<House> SearchResults { get; set; }
+        public int ListingType { get; set; }
+        public string Address { get; set; }
+
+        public int HousingType { get; set; }
+
+        public List<Listing> SearchResults { get; set; }
         public HomeViewModel()
         {
-            SearchResults = new List<House>();
-
+            SearchResults = new List<Listing>();
         }
     }
 }

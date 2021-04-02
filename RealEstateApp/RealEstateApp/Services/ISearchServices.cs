@@ -5,6 +5,6 @@ namespace RealEstateApp.Services
 {
     public interface ISearchServices
     {
-        List<House> Search(string searchInput);
+        List<Listing> Search(int listingType, int propertyType, string address);
     }
 }

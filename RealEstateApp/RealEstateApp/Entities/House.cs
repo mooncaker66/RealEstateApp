@@ -8,7 +8,7 @@ namespace RealEstateApp.Entities
     public class House
     {
         public int ID { get; set; }
-        public string PropertyType { get; set; }
+        public int PropertyType { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string State { get; set; }

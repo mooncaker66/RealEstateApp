@@ -1,4 +1,5 @@
-﻿using RealEstateApp.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstateApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace RealEstateApp.Services
         }
 
 
-        public List<House> Search(string searchInput)
+        public List<Listing> Search(int listingType, int propertyType, string address)
         {
-            return _realEstateDbContext.Houses.Where(i => i.ZipCode == searchInput).ToList();
+            return _realEstateDbContext.Listings
+                .Include(l=>l.House).Where(i => i.ListingType == listingType 
+                && i.House.PropertyType== propertyType 
+                && (i.House.Street.Contains(address) || i.House.City.Contains(address) || i.House.State.Contains(address) || i.House.ZipCode.Contains(address))).ToList();
         }
-
     }
 
 }

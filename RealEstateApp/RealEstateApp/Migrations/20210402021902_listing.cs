@@ -2,7 +2,7 @@
 
 namespace RealEstateApp.Migrations
 {
-    public partial class init : Migration
+    public partial class listing : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace RealEstateApp.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PropertyType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PropertyType = table.Column<int>(type: "int", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -30,14 +30,47 @@ namespace RealEstateApp.Migrations
                     table.PrimaryKey("PK_Houses", x => x.ID);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Listings",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ListingType = table.Column<int>(type: "int", nullable: false),
+                    HouseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Listings", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Listings_Houses_HouseId",
+                        column: x => x.HouseId,
+                        principalTable: "Houses",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Houses",
                 columns: new[] { "ID", "Baths", "Beds", "City", "HasBasement", "HasParking", "HasPool", "PropertyType", "SquareFeet", "State", "Street", "YearBuilt", "ZipCode" },
-                values: new object[] { 1, 2, 3, "tampa", false, true, true, "condo", 3000, "FL", "1234 low St", 1996, "33510" });
+                values: new object[] { 1, 2, 3, "tampa", false, true, true, 1, 3000, "FL", "1234 low St", 1996, "33510" });
+
+            migrationBuilder.InsertData(
+                table: "Listings",
+                columns: new[] { "ID", "HouseId", "ListingType" },
+                values: new object[] { 1, 1, 1 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Listings_HouseId",
+                table: "Listings",
+                column: "HouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Listings");
+
             migrationBuilder.DropTable(
                 name: "Houses");
         }

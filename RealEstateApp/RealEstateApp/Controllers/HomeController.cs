@@ -25,11 +25,8 @@ namespace RealEstateApp.Controllers
             if(homeViewModel==null)
             {
                 homeViewModel = new HomeViewModel();
-            } 
-            if(!string.IsNullOrWhiteSpace(homeViewModel.SearchInput))
-            {
-                homeViewModel.SearchResults = _searchServices.Search(homeViewModel.SearchInput);
             }
+            homeViewModel.SearchResults = _searchServices.Search(homeViewModel.ListingType, homeViewModel.HousingType, homeViewModel.Address);
             return View(homeViewModel);
         }
         [HttpPost]

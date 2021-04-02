@@ -13,6 +13,7 @@ namespace RealEstateApp.Entities
 
         }
         public DbSet<House> Houses { get; set; }
+        public DbSet<Listing> Listings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -20,7 +21,7 @@ namespace RealEstateApp.Entities
                 new House
                 {
                     ID = 1,
-                    PropertyType = "condo",
+                    PropertyType = 1,
                     Street = "1234 low St",
                     City = "tampa",
                     State = "FL",
@@ -34,6 +35,13 @@ namespace RealEstateApp.Entities
                     HasPool = true
                 }
                 );
+            modelBuilder.Entity<Listing>().HasData(
+                new Listing
+                {
+                    ID = 1,
+                    ListingType = 1,
+                    HouseId = 1
+                });
         }
     }
 }
