@@ -1,6 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="row">
+    <div class="col-md-6">
+        <div id="map" style="height:400px; width:400px;"></div>
+        <script>
+            let map;
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8,
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl2L2Ye4W4DaftxwYg3VrBCHR61trmhUw&callback=initMap&libraries=&v=weekly"
+                async></script>
+    </div>
+
+
+</div>

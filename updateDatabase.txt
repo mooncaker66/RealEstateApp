@@ -1,2 +1,6 @@
 dotnet ef migrations add init --project RealEstateApp
 dotnet ef database update --project RealEstateApp
+
+"Server=tcp:realestateqwe.database.windows.net,1433;Initial Catalog=RealEstateDb;Persist Security Info=False;User ID=mooncaker;Password=1379Zhao;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+
+<li class="with-btn">@Html.ActionLink("Submit Property", "SubmitProperty","Home",null,new {@class="button border"})</li>

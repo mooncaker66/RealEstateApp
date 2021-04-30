@@ -28,6 +28,11 @@ namespace RealEstateApp
         {
             services.AddDbContext<RealEstateDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RealEstateDbConnection")));
             services.AddScoped<ISearchServices, SearchServices>();
+            services.AddScoped<IMapService, MapService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IListingServices, ListingServices>();
+
+
             services.AddControllersWithViews();
         }
 
@@ -37,6 +42,7 @@ namespace RealEstateApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -48,9 +54,14 @@ namespace RealEstateApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -10,6 +10,10 @@ namespace RealEstateApp.Entities
         public int ID { get; set; }
         public int ListingType { get; set; }
         public int HouseId  { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public int EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual House House { get; set; }
     }
 }
