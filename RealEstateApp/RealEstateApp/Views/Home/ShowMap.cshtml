@@ -977,10 +977,12 @@
                     ];
 
                     var array = @Html.Raw(Json.Serialize(@ViewBag.locations));
-                    alert(array)
-                    for (var i = 0; i < array.length; i++) {
-                        locations[i] = [locationData('single-property-page-1.html', array[i].Price, '$520 / sq ft', 'images/listing-01.jpg', 'Eagle Apartmets', "9364 School St. Lynchburg, NY "), array[i].Lat, array[i].Lng, 1, markerIcon)];
+                    if (array !== null) {
+                        for (var i = 0; i < array.length; i++) {
+                            locations[i] = [locationData('single-property-page-1.html', array[i].Price, '$520 / sq ft', 'images/listing-01.jpg', 'Eagle Apartmets', "9364 School St. Lynchburg, NY "), array[i].Lat, array[i].Lng, 1, markerIcon];
                         }
+                    }
+
 
                     @*@for (int i = 0; i < ((List<LocationData>)ViewBag.locations).Count; i++)
                     {
