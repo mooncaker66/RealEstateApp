@@ -35,6 +35,10 @@
 
       var locations = [
         [ locationData('single-property-page-1.html','$275,000','$520 / sq ft','images/listing-01.jpg','Eagle Apartmets',"9364 School St. Lynchburg, NY "), 40.7427837, -73.11445617675781, 1, markerIcon ],
+        [ locationData('single-property-page-1.html','$900','monthly','images/listing-02.jpg','Serene Uptown',"6 Bishop Ave. Perkasie, PA"), 40.70437865245596, -73.98674011230469, 2, markerIcon ],
+        [ locationData('single-property-page-1.html','$425,000','$770 / sq ft','images/listing-04.jpg','Selway Apartments',"33 William St. Northbrook, IL "), 40.94401669296697, -74.16938781738281, 3, markerIcon ],
+        [ locationData('single-property-page-1.html','$535,000','$640 / sq ft','images/listing-05.jpg','Oak Tree Villas',"71 Lower River Dr. Bronx, NY "), 40.77055783505125, -74.26002502441406, 4, markerIcon ],
+
 
       ];
 

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using RealEstateApp.Entities;
 using RealEstateApp.Models;
 using RealEstateApp.Services;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
@@ -99,6 +100,20 @@ namespace RealEstateApp.Controllers
                 ViewBag.lat = geocodeResponse.results[0].geometry.location.lat.ToString();
                 ViewBag.lng = geocodeResponse.results[0].geometry.location.lng.ToString();
                 ViewBag.SearchResults = searchResult;
+                var locations = new List<LocationData>();
+                foreach (var listing in searchResult)
+                {
+                    var location = new LocationData();
+                    geocodeResponse = _mapService.GetGeoCodeByAddress(listing.House.Street, listing.House.City, listing.House.State);
+                    location.Lat = geocodeResponse.results[0].geometry.location.lat;
+                    location.Lng = geocodeResponse.results[0].geometry.location.lng;
+                    location.Price = listing.Price.ToString("c2");
+                    location.Community = listing.House.Community;
+                    location.Address = $"{listing.House.Street}, {listing.House.City}, {listing.House.State}";
+                    locations.Add(location);
+
+                }
+                ViewBag.locations = locations;
             }
 
             return ShowMap();
