@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealEstateApp.Entities;
 
 namespace RealEstateApp.Migrations
 {
     [DbContext(typeof(RealEstateDbContext))]
-    partial class RealEstateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210501013648_user")]
+    partial class user
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,6 +263,9 @@ namespace RealEstateApp.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("HouseId")
                         .HasColumnType("int");
 
@@ -270,14 +275,11 @@ namespace RealEstateApp.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
-                    b.HasIndex("HouseId");
+                    b.HasIndex("EmployeeId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("HouseId");
 
                     b.ToTable("Listings");
 
@@ -285,42 +287,42 @@ namespace RealEstateApp.Migrations
                         new
                         {
                             ID = 1,
+                            EmployeeId = 100000,
                             HouseId = 1,
                             ListingType = 1,
-                            Price = 100000m,
-                            UserId = 1
+                            Price = 100000m
                         },
                         new
                         {
                             ID = 2,
+                            EmployeeId = 100000,
                             HouseId = 2,
                             ListingType = 2,
-                            Price = 17000m,
-                            UserId = 1
+                            Price = 17000m
                         },
                         new
                         {
                             ID = 3,
+                            EmployeeId = 100000,
                             HouseId = 3,
                             ListingType = 1,
-                            Price = 410000m,
-                            UserId = 1
+                            Price = 410000m
                         },
                         new
                         {
                             ID = 4,
+                            EmployeeId = 100000,
                             HouseId = 4,
                             ListingType = 1,
-                            Price = 8900m,
-                            UserId = 1
+                            Price = 8900m
                         },
                         new
                         {
                             ID = 5,
+                            EmployeeId = 100000,
                             HouseId = 5,
                             ListingType = 1,
-                            Price = 3300000m,
-                            UserId = 1
+                            Price = 3300000m
                         });
                 });
 
@@ -346,16 +348,6 @@ namespace RealEstateApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EmailAddress = "example@abc.com",
-                            FirstName = "Jake",
-                            LastName = "Bull",
-                            Password = "dslfjsldfj"
-                        });
                 });
 
             modelBuilder.Entity("RealEstateApp.Entities.HouseImage", b =>
@@ -371,21 +363,21 @@ namespace RealEstateApp.Migrations
 
             modelBuilder.Entity("RealEstateApp.Entities.Listing", b =>
                 {
+                    b.HasOne("RealEstateApp.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RealEstateApp.Entities.House", "House")
                         .WithMany()
                         .HasForeignKey("HouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RealEstateApp.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Employee");
 
                     b.Navigation("House");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("RealEstateApp.Entities.House", b =>

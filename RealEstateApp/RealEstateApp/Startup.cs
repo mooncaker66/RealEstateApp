@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,9 +32,22 @@ namespace RealEstateApp
             services.AddScoped<IMapService, MapService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IListingServices, ListingServices>();
+            services.AddScoped<ISecurityServices, SecurityServices>();
 
 
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
+                            options =>
+                            {
+                                options.Cookie.Name = "AuthCookie";
+                                options.ExpireTimeSpan = TimeSpan.FromHours(2);
+                                options.LoginPath = "/Account/Login";
+                            }
+
+                )
+                ;
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +68,7 @@ namespace RealEstateApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

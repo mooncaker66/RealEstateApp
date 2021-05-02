@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RealEstateApp.Entities;
 using RealEstateApp.Models;
 using RealEstateApp.Services;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 
 namespace RealEstateApp.Controllers
 {
@@ -15,6 +17,7 @@ namespace RealEstateApp.Controllers
         private readonly IMapService _mapService;
         private readonly IEmployeeService _employeeService;
         private readonly IListingServices _listingServices;
+
         public HomeController(ILogger<HomeController> logger, ISearchServices searchServices, 
             IMapService mapService, IEmployeeService employeeService, IListingServices listingServices)
         {
@@ -61,13 +64,18 @@ namespace RealEstateApp.Controllers
         {
             return View();
         }
+        [Authorize]
         public IActionResult SubmitProperty()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult SubmitProperty(Listing listing)
         {
+            var userId = HttpContext.User.Claims.Where(i => i.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
+
+            listing.UserId = int.Parse(userId.Value);
             _listingServices.AddListing(listing);
             TempData["success"] = "Property Submitted Successfully";
             return RedirectToAction("Index");

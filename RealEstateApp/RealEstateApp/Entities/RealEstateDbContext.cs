@@ -17,6 +17,7 @@ namespace RealEstateApp.Entities
         public DbSet<House> Houses { get; set; }
         public DbSet<Listing> Listings { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -135,11 +136,22 @@ namespace RealEstateApp.Entities
                     HasPool = true
                 }
                 );
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    FirstName = "Jake",
+                    LastName = "Bull",
+                    Password = "dslfjsldfj",
+                    EmailAddress = "example@abc.com"
+
+                }
+                ) ;
             modelBuilder.Entity<Listing>().HasData(
                 new Listing
                 {
                     ID = 1,
-                    EmployeeId = 100000,
+                    UserId = 1,
                     ListingType = 1,
                     HouseId = 1,    
                     Price = 100000
@@ -148,7 +160,7 @@ namespace RealEstateApp.Entities
                 new Listing
                 {
                     ID = 2,
-                    EmployeeId = 100000,
+                    UserId = 1,
                     ListingType = 2,
                     HouseId = 2,
                     Price = 17000
@@ -157,7 +169,7 @@ namespace RealEstateApp.Entities
                 new Listing
                 {
                     ID = 3,
-                    EmployeeId = 100000,
+                    UserId = 1,
                     ListingType = 1,
                     HouseId = 3,
                     Price = 410000
@@ -166,7 +178,7 @@ namespace RealEstateApp.Entities
                 new Listing
                 {
                     ID = 4,
-                    EmployeeId = 100000,
+                    UserId = 1,
                     ListingType = 1,
                     HouseId = 4,
                     Price = 8900
@@ -176,7 +188,7 @@ namespace RealEstateApp.Entities
                 {
 
                     ID = 5,
-                    EmployeeId = 100000,
+                    UserId = 1,
                     ListingType = 1,
                     HouseId = 5,
                     Price = 3300000
