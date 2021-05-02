@@ -232,33 +232,36 @@
         <div class="fs-container">
 
             <div class="fs-inner-container">
-
-                <!-- Map -->
                 <div id="map-container">
                     <div id="map" data-map-zoom="4" data-map-scroll="true">
-                <div class="row">
-            <div class="col-md-6">
-                <div id="map" style="height:400px; width:400px;"></div>
-                <script>
-                    let map;
-
-                    function initMap() {
-                        map = new google.maps.Map(document.getElementById("map"), {
-                            /**/
-                            center: { lat: @ViewBag.lat, lng: @ViewBag.lng},
-                    /**/
-                    zoom: 8,
-                });
-            }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl2L2Ye4W4DaftxwYg3VrBCHR61trmhUw&callback=initMap&libraries=&v=weekly"
-                        async></script>
-            </div>
-
-
-        </div>
                         <!-- map goes here -->
                     </div>
+                    <!-- Map -->
+                    @*<div id="map-container">
+                <div id="map" data-map-zoom="4" data-map-scroll="true">
+            <div class="row">
+        <div class="col-md-6">
+            <div id="map" style="height:400px; width:400px;"></div>
+            <script>
+                let map;
+
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        /**/
+                        center: { lat: @ViewBag.lat, lng: @ViewBag.lng},
+                /**/
+                zoom: 8,
+            });
+        }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl2L2Ye4W4DaftxwYg3VrBCHR61trmhUw&callback=initMap&libraries=&v=weekly"
+                    async></script>
+        </div>*@
+
+
+                @*</div>*@
+                        <!-- map goes here -->
+                    @*</div>*@
 
                     <!-- Map Navigation -->
                     <a href="#" id="geoLocation" title="Your location"></a>
@@ -926,11 +929,11 @@
         <script type="text/javascript" src="~/scripts/custom.js"></script>
 
         <!-- Maps -->
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAl2L2Ye4W4DaftxwYg3VrBCHR61trmhUw"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAl2L2Ye4W4DaftxwYg3VrBCHR61trmhUw"></script>
         <script type="text/javascript" src="~/scripts/infobox.min.js"></script>
         <script type="text/javascript" src="~/scripts/markerclusterer.js"></script>
         <script type="text/javascript" src="~/scripts/maps.js"></script>
-        <script src="~/scripts/maps.js"></script>
+        
 
     </div>
     <!-- Wrapper / End -->
