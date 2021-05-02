@@ -16,6 +16,7 @@ namespace RealEstateApp.Models
         public ShowMapViewModel()
         {
             SearchResults = new List<Listing>();
+            Address = "";
         }
     }
 }

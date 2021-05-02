@@ -18,10 +18,14 @@ namespace RealEstateApp.Services
 
         public List<Listing> Search(int listingType, int propertyType, string address)
         {
-            return _realEstateDbContext.Listings
-                .Include(l=>l.House).Where(i => i.ListingType == listingType 
-                && i.House.PropertyType== propertyType 
-                && (i.House.Street.Contains(address) || i.House.City.Contains(address) || i.House.State.Contains(address) || i.House.ZipCode.Contains(address))).ToList();
+            var query = _realEstateDbContext.Listings
+                .Include(l => l.House).Where(i => i.ListingType == listingType
+                && i.House.PropertyType == propertyType );
+            if (!string.IsNullOrWhiteSpace(address))
+            {
+                query = query.Where(i=>i.House.Street.Contains(address) || i.House.City.Contains(address) || i.House.State.Contains(address) || i.House.ZipCode.Contains(address));
+            }
+            return query.ToList();
         }
     }
 

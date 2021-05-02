@@ -113,7 +113,7 @@ namespace RealEstateApp.Controllers
                     locations.Add(location);
 
                 }
-                ViewBag.locations = locations;
+                ViewBag.locations = locations.ToArray();
             }
 
             return ShowMap();
