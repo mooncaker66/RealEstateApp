@@ -19,7 +19,7 @@ namespace RealEstateApp.Services
         public List<Listing> Search(int listingType, int propertyType, string address)
         {
             var query = _realEstateDbContext.Listings
-                .Include(l => l.House).Where(i => i.ListingType == listingType
+                .Include(l => l.House).ThenInclude(h=>h.HouseImages).Where(i => i.ListingType == listingType
                 && i.House.PropertyType == propertyType );
             if (!string.IsNullOrWhiteSpace(address))
             {

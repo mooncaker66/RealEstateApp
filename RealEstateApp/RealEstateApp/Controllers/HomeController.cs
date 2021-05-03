@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using AutoMapper;
+using System.IO;
+using System;
 
 namespace RealEstateApp.Controllers
 {
@@ -18,15 +21,17 @@ namespace RealEstateApp.Controllers
         private readonly IMapService _mapService;
         private readonly IEmployeeService _employeeService;
         private readonly IListingServices _listingServices;
+        private readonly IMapper _mapper;
 
         public HomeController(ILogger<HomeController> logger, ISearchServices searchServices, 
-            IMapService mapService, IEmployeeService employeeService, IListingServices listingServices)
+            IMapService mapService, IEmployeeService employeeService, IListingServices listingServices, IMapper mapper)
         {
             _logger = logger;
             _searchServices = searchServices;
             _mapService = mapService;
             _employeeService = employeeService;
             _listingServices = listingServices;
+            _mapper = mapper;
 
         }
 
@@ -51,11 +56,7 @@ namespace RealEstateApp.Controllers
         [HttpPost]
         public IActionResult Search(HomeViewModel homeViewModel)
         {
-            return RedirectToAction("Index", "Home", homeViewModel);
-        }
-        public IActionResult Privacy()
-        {
-            return View();
+            return RedirectToAction("ShowMap", "Home", new { listingType = homeViewModel.ListingType, housingType = homeViewModel.HousingType, address = homeViewModel.Address } );
         }
         public IActionResult ShowDetails()
         {
@@ -72,19 +73,35 @@ namespace RealEstateApp.Controllers
         }
         [HttpPost]
         [Authorize]
-        public IActionResult SubmitProperty(Listing listing)
+        public IActionResult SubmitProperty(SubmitPropertyViewModel submitPropertyViewModel)
         {
             var userId = HttpContext.User.Claims.Where(i => i.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
 
-            listing.UserId = int.Parse(userId.Value);
-            _listingServices.AddListing(listing);
+            submitPropertyViewModel.UserId = int.Parse(userId.Value);
+           var listing = _listingServices.AddListing(submitPropertyViewModel);
+            foreach (var item in submitPropertyViewModel.UploadFiles)
+            {
+                var memoryStream = new MemoryStream();
+                item.CopyTo(memoryStream);
+                var houseImage = new HouseImage
+                {
+                    HouseID = listing.House.ID,
+                    Image = memoryStream.ToArray(),
+                };
+                _listingServices.AddHouseImage(houseImage);
+            }
             TempData["success"] = "Property Submitted Successfully";
             return RedirectToAction("Index");
         }
 
-        public IActionResult ShowMap()
+        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="" )
         {
-            var ShowMapModel = new ShowMapViewModel();
+            var ShowMapModel = new ShowMapViewModel()
+            {
+                ListingType=listingType,
+                HousingType=housingType,
+                Address=address
+            };
             return View(ShowMapModel);
         }
         [HttpPost]
@@ -95,13 +112,13 @@ namespace RealEstateApp.Controllers
             var searchResult= _searchServices.Search(model.ListingType, model.HousingType, model.Address);
             if (searchResult.Any())
             {
-                var house = searchResult[0];
+                var listingViewModels = _mapper.Map<List<ListingViewModel>>(searchResult);
+                var house = listingViewModels[0];
                 var geocodeResponse = _mapService.GetGeoCodeByAddress(house.House.Street, house.House.City, house.House.State);
                 ViewBag.lat = geocodeResponse.results[0].geometry.location.lat.ToString();
                 ViewBag.lng = geocodeResponse.results[0].geometry.location.lng.ToString();
-                ViewBag.SearchResults = searchResult;
                 var locations = new List<LocationData>();
-                foreach (var listing in searchResult)
+                foreach (var listing in listingViewModels)
                 {
                     var location = new LocationData();
                     geocodeResponse = _mapService.GetGeoCodeByAddress(listing.House.Street, listing.House.City, listing.House.State);
@@ -111,8 +128,21 @@ namespace RealEstateApp.Controllers
                     location.Community = listing.House.Community;
                     location.Address = $"{listing.House.Street}, {listing.House.City}, {listing.House.State}";
                     locations.Add(location);
-
+                    listing.ImageSrcs = new List<string>();
+                    if (listing.House.HouseImages!= null)
+                    {
+                        foreach (var item in listing.House.HouseImages)
+                        {
+                            var base64 = Convert.ToBase64String(item.Image);
+                            var ImageSrc = $"data:image/jpeg; base64, {base64}";
+                            listing.ImageSrcs.Add(ImageSrc);
+                        }
+                       
+                    }
+                    
                 }
+                ViewBag.listingViewModels = listingViewModels;
+
                 ViewBag.locations = locations.ToArray();
             }
 
