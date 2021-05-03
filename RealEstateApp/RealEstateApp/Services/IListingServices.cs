@@ -6,5 +6,6 @@ namespace RealEstateApp.Services
     {
         Listing AddListing(Listing listing);
         void AddHouseImage(HouseImage houseImage);
+        Listing GetListingById(int id);
     }
 }

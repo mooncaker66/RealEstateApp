@@ -58,9 +58,22 @@ namespace RealEstateApp.Controllers
         {
             return RedirectToAction("ShowMap", "Home", new { listingType = homeViewModel.ListingType, housingType = homeViewModel.HousingType, address = homeViewModel.Address } );
         }
-        public IActionResult ShowDetails()
+        public IActionResult ShowDetails(int id)
         {
-            return View();
+            Listing listing = _listingServices.GetListingById(id);
+            var listingViewModel = _mapper.Map<ListingViewModel>(listing);
+            listingViewModel.ImageSrcs = new List<string>();
+            if (listing.House.HouseImages != null)
+            {
+                foreach (var item in listing.House.HouseImages)
+                {
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var ImageSrc = $"data:image/jpeg; base64, {base64}";
+                    listingViewModel.ImageSrcs.Add(ImageSrc);
+                }
+
+            }
+            return View(listingViewModel);
         }
         public IActionResult AgentLists()
         {
