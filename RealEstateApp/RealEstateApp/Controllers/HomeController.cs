@@ -56,11 +56,7 @@ namespace RealEstateApp.Controllers
         [HttpPost]
         public IActionResult Search(HomeViewModel homeViewModel)
         {
-            return RedirectToAction("Index", "Home", homeViewModel);
-        }
-        public IActionResult Privacy()
-        {
-            return View();
+            return RedirectToAction("ShowMap", "Home", new { listingType = homeViewModel.ListingType, housingType = homeViewModel.HousingType, address = homeViewModel.Address } );
         }
         public IActionResult ShowDetails()
         {
@@ -98,9 +94,14 @@ namespace RealEstateApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ShowMap()
+        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="" )
         {
-            var ShowMapModel = new ShowMapViewModel();
+            var ShowMapModel = new ShowMapViewModel()
+            {
+                ListingType=listingType,
+                HousingType=housingType,
+                Address=address
+            };
             return View(ShowMapModel);
         }
         [HttpPost]
