@@ -1,4 +1,4 @@
-﻿@model RealEstateApp.Entities.Listing 
+﻿@model SubmitPropertyViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -27,7 +27,7 @@
     <div id="wrapper">
 
 
-     <!-- Compare Properties Widget / End -->
+        <!-- Compare Properties Widget / End -->
         <!-- Header Container
         ================================================== -->
         <header id="header-container">
@@ -260,7 +260,7 @@
             <div class="row">
 
                 <!-- Submit Page -->
-                <form asp-action="SubmitProperty">
+                <form asp-action="SubmitProperty" enctype="multipart/form-data">
                     <div class="col-md-12">
                         <div class="submit-page">
 
@@ -285,7 +285,7 @@
                                     <!-- Status -->
                                     <div class="col-md-6">
                                         <h5>Status</h5>
-                                        <select asp-for="ListingType"class="chosen-select-no-single">
+                                        <select asp-for="ListingType" class="chosen-select-no-single">
                                             <option label="blank"></option>
                                             <option>For Sale</option>
                                             <option>For Rent</option>
@@ -295,7 +295,7 @@
                                     <!-- Type -->
                                     <div class="col-md-6">
                                         <h5>Type</h5>
-                                        <select asp-for="House.PropertyType"class="chosen-select-no-single">
+                                        <select asp-for="House.PropertyType" class="chosen-select-no-single">
                                             <option label="blank"></option>
                                             <option>Apartment</option>
                                             <option>House</option>
@@ -314,7 +314,7 @@
                                     <div class="col-md-4">
                                         <h5>Price <i class="tip" data-tip-content="Type overall or monthly price if property is for rent"></i></h5>
                                         <div class="select-input disabled-first-option">
-                                            <input asp-for="Price"type="text" data-unit="USD">
+                                            <input asp-for="Price" type="text" data-unit="USD">
                                         </div>
                                     </div>
 
@@ -322,14 +322,14 @@
                                     <div class="col-md-4">
                                         <h5>Area</h5>
                                         <div class="select-input disabled-first-option">
-                                            <input asp-for="House.SquareFeet"type="text" data-unit="Sq Ft">
+                                            <input asp-for="House.SquareFeet" type="text" data-unit="Sq Ft">
                                         </div>
                                     </div>
 
                                     <!-- Rooms -->
                                     <div class="col-md-4">
                                         <h5>Rooms</h5>
-                                        <select asp-for="House.Rooms"class="chosen-select-no-single">
+                                        <select asp-for="House.Rooms" class="chosen-select-no-single">
                                             <option label="blank"></option>
                                             <option>1</option>
                                             <option>2</option>
@@ -348,7 +348,7 @@
                             <!-- Section -->
                             <h3>Gallery</h3>
                             <div class="submit-section">
-                                <form action="/file-upload" class="dropzone"></form>
+                                <input type="file" asp-for="UploadFiles" class="form-control" accept=".jpg" multiple />
                             </div>
                             <!-- Section / End -->
                             <!-- Section -->
@@ -361,25 +361,25 @@
                                     <!-- Address -->
                                     <div class="col-md-6">
                                         <h5>Address</h5>
-                                        <input asp-for="House.Street"type="text">
+                                        <input asp-for="House.Street" type="text">
                                     </div>
 
                                     <!-- City -->
                                     <div class="col-md-6">
                                         <h5>City</h5>
-                                        <input asp-for="House.City"type="text">
+                                        <input asp-for="House.City" type="text">
                                     </div>
 
                                     <!-- City -->
                                     <div class="col-md-6">
                                         <h5>State</h5>
-                                        <input asp-for="House.State"type="text">
+                                        <input asp-for="House.State" type="text">
                                     </div>
 
                                     <!-- Zip-Code -->
                                     <div class="col-md-6">
                                         <h5>Zip-Code</h5>
-                                        <input asp-for="House.ZipCode"type="text">
+                                        <input asp-for="House.ZipCode" type="text">
                                     </div>
 
                                 </div>
@@ -394,7 +394,7 @@
                                 <!-- Description -->
                                 <div class="form">
                                     <h5>Description</h5>
-                                    <textarea asp-for="Description"class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
+                                    <textarea asp-for="Description" class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
                                 </div>
 
                                 <!-- Row -->
@@ -403,7 +403,7 @@
                                     <!-- Age of Home -->
                                     <div class="col-md-4">
                                         <h5>Building Age <span>(optional)</span></h5>
-                                        <select asp-for="House.Ages"class="chosen-select-no-single">
+                                        <select asp-for="House.Ages" class="chosen-select-no-single">
                                             <option label="blank"></option>
                                             <option>0 - 1 Years</option>
                                             <option>0 - 5 Years</option>
@@ -417,7 +417,7 @@
                                     <!-- Beds -->
                                     <div class="col-md-4">
                                         <h5>Bedrooms <span>(optional)</span></h5>
-                                        <select asp-for="House.Beds"class="chosen-select-no-single">
+                                        <select asp-for="House.Beds" class="chosen-select-no-single">
                                             <option label="blank"></option>
                                             <option>1</option>
                                             <option>2</option>
@@ -430,7 +430,7 @@
                                     <!-- Baths -->
                                     <div class="col-md-4">
                                         <h5>Bathrooms <span>(optional)</span></h5>
-                                        <select asp-for="House.Baths"class="chosen-select-no-single">
+                                        <select asp-for="House.Baths" class="chosen-select-no-single">
                                             <option label="blank"></option>
                                             <option>1</option>
                                             <option>2</option>
@@ -446,20 +446,20 @@
                                 <h5 class="margin-top-30">Other Features <span>(optional)</span></h5>
                                 <div class="checkboxes in-row margin-bottom-20">
 
-                                    <input asp-for="House.HasAirCondition"id="check-2" type="checkbox" name="check">
+                                    <input asp-for="House.HasAirCondition" id="check-2" type="checkbox" name="check">
                                     <label for="check-2">Air Conditioning</label>
 
-                                    <input asp-for="House.HasPool"id="check-3" type="checkbox" name="check">
+                                    <input asp-for="House.HasPool" id="check-3" type="checkbox" name="check">
                                     <label for="check-3">Swimming Pool</label>
 
-                                    <input asp-for="House.HasHeating"id="check-4" type="checkbox" name="check">
+                                    <input asp-for="House.HasHeating" id="check-4" type="checkbox" name="check">
                                     <label for="check-4">Central Heating</label>
 
-                                    <input asp-for="House.HasLaudry"id="check-5" type="checkbox" name="check">
+                                    <input asp-for="House.HasLaudry" id="check-5" type="checkbox" name="check">
                                     <label for="check-5">Laundry Room</label>
 
 
-                                    <input asp-for="House.HasGym"id="check-6" type="checkbox" name="check">
+                                    <input asp-for="House.HasGym" id="check-6" type="checkbox" name="check">
                                     <label for="check-6">Gym</label>
 
 
@@ -474,12 +474,12 @@
 
                             <div class="divider"></div>
                             @*<a href="#" class="button preview margin-top-5">Submit <i class="fa fa-arrow-circle-right"></i></a>*@
-                            <input type="submit" value="Submit"/>
+                            <input type="submit" value="Submit" />
 
                         </div>
                     </div>
                 </form>
-                
+
 
             </div>
         </div>
@@ -571,9 +571,9 @@
         <!-- DropZone | Documentation: http://dropzonejs.com -->
         <script type="text/javascript" src="~/scripts/dropzone.js"></script>
         <script>
-	$(".dropzone").dropzone({
-		dictDefaultMessage: "<i class='sl sl-icon-plus'></i> Click here or drop files to upload",
-	});
+            $(".dropzone").dropzone({
+                dictDefaultMessage: "<i class='sl sl-icon-plus'></i> Click here or drop files to upload",
+            });
         </script>
 
 

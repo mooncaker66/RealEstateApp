@@ -569,9 +569,9 @@
 
                     <!-- Listings -->
                     <div class="listings-container grid-layout row fs-listings">
-                        @if (ViewBag.SearchResults != null)
+                        @if (ViewBag.listingViewModels != null)
                         {
-                            @foreach (var listingItem in ViewBag.SearchResults)
+                            @foreach (var listingItem in (List<ListingViewModel>)ViewBag.listingViewModels)
                             {
                                 <!-- Listing Item -->
                                 <div class="listing-item">
@@ -598,9 +598,11 @@
                                         </div>
 
                                         <div class="listing-carousel">
-                                            <div><img src="images/listing-01.jpg" alt=""></div>
-                                            <div><img src="images/listing-01b.jpg" alt=""></div>
-                                            <div><img src="images/listing-01c.jpg" alt=""></div>
+                                            @foreach (var img in @listingItem.ImageSrcs)
+                                            {
+                                                <div><img src='@img' width="200" height="250"alt=""></div>
+                                            }
+
                                         </div>
                                     </a>
 
