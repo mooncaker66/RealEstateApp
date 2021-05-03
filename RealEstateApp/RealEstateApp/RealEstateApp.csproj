@@ -24,4 +24,10 @@
     <Folder Include="BusinessLogic\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\img\background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
