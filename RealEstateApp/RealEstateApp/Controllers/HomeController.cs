@@ -43,13 +43,29 @@ namespace RealEstateApp.Controllers
             }
             ViewBag.lat = "-34.397";
             ViewBag.lng = "150.644";
-            homeViewModel.SearchResults = _searchServices.Search(homeViewModel.ListingType, homeViewModel.HousingType, homeViewModel.Address);
-            if (homeViewModel.SearchResults.Any())
+            var searchResult = _searchServices.Search(homeViewModel.ListingType, homeViewModel.HousingType, homeViewModel.Address);
+            if (searchResult.Any())
             {
-                var house = homeViewModel.SearchResults[0];
+                homeViewModel.ListingViewModels = _mapper.Map<List<ListingViewModel>>(searchResult);
+
+                var house = homeViewModel.ListingViewModels[0];
                 var geocodeResponse = _mapService.GetGeoCodeByAddress(house.House.Street, house.House.City, house.House.State);
                 ViewBag.lat = geocodeResponse.results[0].geometry.location.lat.ToString();
                 ViewBag.lng = geocodeResponse.results[0].geometry.location.lng.ToString();
+                foreach (var listing in homeViewModel.ListingViewModels)
+                {
+                    listing.ImageSrcs = new List<string>();
+                    if (listing.House.HouseImages != null)
+                    {
+                        foreach (var item in listing.House.HouseImages)
+                        {
+                            var base64 = Convert.ToBase64String(item.Image);
+                            var ImageSrc = $"data:image/jpeg; base64, {base64}";
+                            listing.ImageSrcs.Add(ImageSrc);
+                        }
+
+                    }
+                }               
             }
             return View(homeViewModel);
         }
@@ -63,6 +79,7 @@ namespace RealEstateApp.Controllers
             Listing listing = _listingServices.GetListingById(id);
             var listingViewModel = _mapper.Map<ListingViewModel>(listing);
             listingViewModel.ImageSrcs = new List<string>();
+
             if (listing.House.HouseImages != null)
             {
                 foreach (var item in listing.House.HouseImages)

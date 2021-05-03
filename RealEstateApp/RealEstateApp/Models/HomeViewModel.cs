@@ -13,10 +13,10 @@ namespace RealEstateApp.Models
 
         public int HousingType { get; set; }
 
-        public List<Listing> SearchResults { get; set; }
+        public List<ListingViewModel> ListingViewModels { get; set; }
         public HomeViewModel()
         {
-            SearchResults = new List<Listing>();
+            ListingViewModels = new List<ListingViewModel>();
         }
     }
 }

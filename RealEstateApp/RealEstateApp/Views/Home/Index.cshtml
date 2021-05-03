@@ -181,7 +181,7 @@
                     <div class="carousel">
 
                         <!-- Listing Item -->
-                        @foreach (var listing in Model.SearchResults)
+                        @foreach (var listing in Model.ListingViewModels)
                         {
 
 
@@ -205,7 +205,7 @@
                                             </ul>
                                         </div>
 
-                                        <img src="images/listing-01.jpg" alt="">
+                                        <img src='@listing.ImageSrcs[0]' alt="">
                                     </a>
 
                                 </div>
