@@ -67,6 +67,7 @@ namespace RealEstateApp.Controllers
                     }
                 }               
             }
+            homeViewModel.ListingViewModels = homeViewModel.ListingViewModels.OrderByDescending(l => l.ID).ToList();
             return View(homeViewModel);
         }
         [HttpPost]
