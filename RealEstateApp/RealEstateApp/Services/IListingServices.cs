@@ -4,6 +4,8 @@ namespace RealEstateApp.Services
 {
     public interface IListingServices
     {
-        void AddListing(Listing listing);
+        Listing AddListing(Listing listing);
+        void AddHouseImage(HouseImage houseImage);
+        Listing GetListingById(int id);
     }
 }

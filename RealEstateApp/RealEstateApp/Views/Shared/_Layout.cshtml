@@ -4,31 +4,126 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RealEstateApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header id="header-container" class="header-style-2">
+
+        <!-- Header -->
+        <div id="header">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RealEstateApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+
+                <!-- Left Side Content -->
+                <div class="left-side">
+
+                    <!-- Logo -->
+                    <div id="logo" class="margin-top-10">
+                        <img src="~/images/logo.png" alt="" width="200" height="200">
+
+                        <!-- Logo for Sticky Header -->
+                        <a class="sticky-logo"><img src="~/images/logo.png" alt=""></a>
+                    </div>
+
+                    <!-- Mobile Navigation -->
+                    <div class="mmenu-trigger">
+                        <button class="hamburger hamburger--collapse" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+
+                </div>
+                <!-- Left Side Content / End -->
+                <!-- Right Side Content / End -->
+                <div class="right-side">
+                    <ul class="header-widget">
+                        <li>
+                            <i class="sl sl-icon-call-in"></i>
+                            <div class="widget-content">
+                                <span class="title">Questions?</span>
+                                <span class="data">(123) 123-456 </span>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                        <li>
+                            <i class="sl sl-icon-location"></i>
+                            <div class="widget-content">
+                                <span class="title">Our Office</span>
+                                <span class="data">45 Park Avenue, NY</span>
+                            </div>
                         </li>
+
+                        <li class="with-btn">@Html.ActionLink("Submit Property", "SubmitProperty", "Home", null)</li>
                     </ul>
                 </div>
+                <!-- Right Side Content / End -->
+
             </div>
-        </nav>
+
+            <!-- Main Navigation -->
+            <nav id="navigation" class="style-2">
+                <div class="container">
+                    <ul id="responsive">
+
+                        <li>
+                            @Html.ActionLink("Home", "Index", "Home", null)
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Sign up", "Register", "Account", null)
+                        </li>
+
+
+                        <li>
+                            @Html.ActionLink("Log in", "Login", "Account", null)
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Agents", "AgentLists", "Home", null)
+                        </li>
+
+                        <!-- 						<li class="right-side-menu-item"><a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a></li> -->
+                    </ul>
+                </div>
+            </nav>
+            <div class="clearfix"></div>
+        </div>
     </header>
+
+
+
+    <div class="clearfix"></div>
+    <!--<nav id="navigation" class="style-2">
+    <div class="container">
+        <ul id="responsive">
+
+            <li>
+                @Html.ActionLink("Home", "Index", "Home", null)
+
+            </li>
+            <li>
+                @Html.ActionLink("Sign up", "Register", "Account", null)
+            <li>
+                @Html.ActionLink("Log in", "Login", "Account", null)
+
+            </li>
+            <li>
+                @Html.ActionLink("Submit Property", "SubmitProperty", "Home", null)
+            </li>-->
+    @*<li>
+            @Html.ActionLink("Map", "ShowMap", "Home", null)
+        </li>*@
+
+    <!--<li>
+        @Html.ActionLink("Agents", "AgentLists", "Home", null)
+    </li>-->
+    <!-- 						<li class="right-side-menu-item"><a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a></li> -->
+    <!--</ul>
+                </div>
+            </nav>
+    </header>-->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -40,8 +135,8 @@
             &copy; 2021 - RealEstateApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

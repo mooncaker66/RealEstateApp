@@ -1,4 +1,5 @@
-﻿using RealEstateApp.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstateApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,23 @@ namespace RealEstateApp.Services
         {
             _realEstateDbContext = realEstateDbContext;
         }
-        public void AddListing(Listing listing)
+
+        public void AddHouseImage(HouseImage houseImage)
+        {
+            _realEstateDbContext.HouseImages.Add(houseImage);
+            _realEstateDbContext.SaveChanges();
+        }
+
+        public Listing AddListing(Listing listing)
         {
             _realEstateDbContext.Listings.Add(listing);
             _realEstateDbContext.SaveChanges();
+            return listing;
+        }
+
+        public Listing GetListingById(int id)
+        {
+            return _realEstateDbContext.Listings.Include(l => l.House).ThenInclude(h => h.HouseImages).Where(l => l.ID == id).FirstOrDefault();
         }
     }
 }

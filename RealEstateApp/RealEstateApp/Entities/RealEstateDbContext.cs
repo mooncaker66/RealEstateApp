@@ -18,6 +18,8 @@ namespace RealEstateApp.Entities
         public DbSet<Listing> Listings { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<HouseImage> HouseImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

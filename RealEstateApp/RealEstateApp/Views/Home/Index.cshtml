@@ -24,115 +24,12 @@
 
     <!-- Wrapper -->
     <div id="wrapper">
-
-
-
-        <!-- Header Container
-        ================================================== -->
-        <header id="header-container" class="header-style-2">
-
-            <!-- Header -->
-            <div id="header">
-                <div class="container">
-                    @if(TempData["success"]!=null)
-            {
-                <label class="text-success">@TempData["success"] </label>
-            }
-                    <!-- Left Side Content -->
-                    <div class="left-side">
-
-                        <!-- Logo -->
-                        <div class="margin-bottom-0">
-                            <a href="index.html"><img src="images/logo-a.png" width="150" height="100" alt=""></a>
-
-                            <!-- Logo for Sticky Header -->
-                            <a href="index.html" class="sticky-logo"><img src="images/logo-a.png" alt=""></a>
-                        </div>
-
-                        <!-- Mobile Navigation -->
-                        <div class="mmenu-trigger">
-                            <button class="hamburger hamburger--collapse" type="button">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-
-                    </div>
-                    <!-- Left Side Content / End -->
-                    <!-- Right Side Content / End -->
-                    <div class="right-side">
-                        <ul class="header-widget">
-                            <li>
-                                <i class="sl sl-icon-call-in"></i>
-                                <div class="widget-content">
-                                    <span class="title">Questions?</span>
-                                    <span class="data">(123) 123-456 </span>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <i class="sl sl-icon-location"></i>
-                                <div class="widget-content">
-                                    <span class="title">Our Office</span>
-                                    <span class="data">45 Park Avenue, FL</span>
-                                </div>
-                            </li>
-
-                            @*<li class="with-btn"><a href="SubmitProperty.cshtml" class="button border">Submit Property</a></li>*@
-                            <li class="with-btn">@Html.ActionLink("Submit Property", "SubmitProperty", "Home", null, new { @class = "button border" })</li>
-                        </ul>
-                    </div>
-                    <!-- Right Side Content / End -->
-
-                </div>
-
-                <!-- Main Navigation -->
-                <nav id="navigation" class="style-2">
-                    <div class="container">
-                        <ul id="responsive">
-
-                            <li>
-                                @Html.ActionLink("Home", "Index", "Home", null)
-
-                            </li>
-                            <li>
-                                @Html.ActionLink("Sign up", "Register", "Account", null)
-<li>
-                                @Html.ActionLink("Log in", "Login", "Account", null)
-
-                            </li>
-
-                            @*<li>
-                                @Html.ActionLink("Map", "ShowMap", "Home", null)
-                            </li>*@
-
-                            <li>
-                            @Html.ActionLink("Agents", "AgentLists", "Home", null)
-                            </li>
-
-                            <!-- 						<li class="right-side-menu-item"><a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a></li> -->
-                        </ul>
-                    </div>
-                </nav>
-
-
-
-                <div class="clearfix"></div>
-                <!-- Main Navigation / End -->
-            </div>
-            <!-- Header / End -->
-
-        </header>
-        <div class="clearfix"></div>
-        <!-- Header Container / End -->
         <!-- Banner
         ================================================== -->
-        <div class="parallax" data-background="img/background.jpg" data-color="#36383e" data-color-opacity="0.5" data-img-width="2500" data-img-height="1600">
+        <div>
 
             <div class="container">
-                <div class="row">
+                <div class="row parallax" data-background="img/background.jpg" data-color="#36383e" data-color-opacity="0.5" data-img-width="2500" data-img-height="1600">
                     <div class="col-md-12">
 
                         <div class="search-container">
@@ -171,7 +68,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="row">
+                                @*<div class="row">
                                     <div class="col-md-6">
                                         <div id="map" style="height:400px; width:400px;"></div>
                                         <script>
@@ -191,7 +88,7 @@
                                     </div>
 
 
-                                </div>
+                                </div>*@
 
                             </div>
                             <!-- Row With Forms / End -->
@@ -284,15 +181,14 @@
                     <div class="carousel">
 
                         <!-- Listing Item -->
-                        @foreach (var listing in Model.SearchResults)
+                        @foreach (var listing in Model.ListingViewModels)
                         {
 
 
                             <div class="carousel-item">
                                 <div class="listing-item compact">
 
-                                    <a href="single-property-page-1.html" class="listing-img-container">
-
+                                    <a href="@Url.Action("ShowDetails", "Home", new { id = listing.ID})" class="listing-img-container">
                                         <div class="listing-badges">
                                             <span class="featured">Featured</span>
                                             <span>For Sale</span>
@@ -309,160 +205,20 @@
                                             </ul>
                                         </div>
 
-                                        <img src="images/listing-01.jpg" alt="">
+                                        <img src='@listing.ImageSrcs[0]' alt="">
                                     </a>
 
                                 </div>
                             </div>
                         }
-                        <!-- Listing Item / End -->
-                        <!-- Listing Item -->
-                        <div class="carousel-item">
-                            <div class="listing-item compact">
 
-                                <a href="single-property-page-2.html" class="listing-img-container">
-
-                                    <div class="listing-badges">
-                                        <span class="featured">Featured</span>
-                                        <span>For Sale</span>
-                                    </div>
-
-                                    <div class="listing-img-content">
-                                        <span class="listing-compact-title">123<i>$900 / monthly</i></span>
-
-                                        <ul class="listing-hidden-content">
-                                            <li>Area <span>440 sq ft</span></li>
-                                            <li>Rooms <span>3</span></li>
-                                            <li>Beds <span>1</span></li>
-                                            <li>Baths <span>1</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <img src="images/listing-02.jpg" alt="">
-                                </a>
-
-                            </div>
-                        </div>
-                        <!-- Listing Item / End -->
-                        <!-- Listing Item -->
-                        <div class="carousel-item">
-                            <div class="listing-item compact">
-
-                                <a href="single-property-page-1.html" class="listing-img-container">
-
-                                    <div class="listing-badges">
-                                        <span class="featured">Featured</span>
-                                        <span>For Rent</span>
-                                    </div>
-
-                                    <div class="listing-img-content">
-                                        <span class="listing-compact-title">Meridian Villas <i>$1700 / monthly</i></span>
-
-                                        <ul class="listing-hidden-content">
-                                            <li>Area <span>1450 sq ft</span></li>
-                                            <li>Rooms <span>3</span></li>
-                                            <li>Beds <span>2</span></li>
-                                            <li>Baths <span>2</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <img src="images/listing-03.jpg" alt="">
-                                </a>
-
-                            </div>
-                        </div>
-                        <!-- Listing Item / End -->
-                        <!-- Listing Item -->
-                        <div class="carousel-item">
-                            <div class="listing-item compact">
-
-                                <a href="single-property-page-3.html" class="listing-img-container">
-
-                                    <div class="listing-badges">
-                                        <span class="featured">Featured</span>
-                                        <span>For Sale</span>
-                                    </div>
-
-                                    <div class="listing-img-content">
-                                        <span class="listing-compact-title">Selway Apartments <i>$420,000</i></span>
-
-                                        <ul class="listing-hidden-content">
-                                            <li>Area <span>540 sq ft</span></li>
-                                            <li>Rooms <span>2</span></li>
-                                            <li>Beds <span>2</span></li>
-                                            <li>Baths <span>1</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <img src="images/listing-04.jpg" alt="">
-                                </a>
-
-                            </div>
-                        </div>
-                        <!-- Listing Item / End -->
-                        <!-- Listing Item -->
-                        <div class="carousel-item">
-                            <div class="listing-item compact">
-
-                                <a href="single-property-page-2.html" class="listing-img-container">
-
-                                    <div class="listing-badges">
-                                        <span class="featured">Featured</span>
-                                        <span>For Sale</span>
-                                    </div>
-
-                                    <div class="listing-img-content">
-                                        <span class="listing-compact-title">Oak Tree Villas <i>$535,000</i></span>
-
-                                        <ul class="listing-hidden-content">
-                                            <li>Area <span>550 sq ft</span></li>
-                                            <li>Rooms <span>3</span></li>
-                                            <li>Beds <span>2</span></li>
-                                            <li>Baths <span>2</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <img src="images/listing-05.jpg" alt="">
-                                </a>
-
-                            </div>
-                        </div>
-                        <!-- Listing Item / End -->
-                        <!-- Listing Item -->
-                        <div class="carousel-item">
-                            <div class="listing-item compact">
-
-                                <a href="single-property-page-1.html" class="listing-img-container">
-
-                                    <div class="listing-badges">
-                                        <span class="featured">Featured</span>
-                                        <span>For Rent</span>
-                                    </div>
-
-                                    <div class="listing-img-content">
-                                        <span class="listing-compact-title">Old Town Manchester <i>$500 / monthly</i></span>
-
-                                        <ul class="listing-hidden-content">
-                                            <li>Area <span>850 sq ft</span></li>
-                                            <li>Rooms <span>3</span></li>
-                                            <li>Beds <span>2</span></li>
-                                            <li>Baths <span>1</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <img src="images/listing-06.jpg" alt="">
-                                </a>
-
-                            </div>
-                        </div>
-                        <!-- Listing Item / End -->
 
                     </div>
                 </div>
                 <!-- Carousel / End -->
 
             </div>
-        </div>
+        
         <!-- Featured / End -->
         <!-- Fullwidth Section -->
         <section class="fullwidth margin-top-105 margin-bottom-0 padding-bottom-80 padding-top-95" data-background-color="#f7f7f7">
@@ -526,19 +282,16 @@
                     <div class="col-md-4 col-sm-6 ">
                         <h4>Helpful Links</h4>
                         <ul class="footer-links">
-                            <li><a href="www.google.com">Login</a></li>
-                            <li>@Html.ActionLink("Agent SignUp", "SignUp", "Home", null)</li>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Add Property</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li>@Html.ActionLink("Home", "Index", "Home", null)</li>
+                            <li>@Html.ActionLink("Sign up", "Register", "Account", null)</li>
+                            <li>@Html.ActionLink("Log in", "Login", "Account", null)</li>
+                            <li>@Html.ActionLink("Submit Property", "SubmitProperty", "Home", null)</li>
                         </ul>
 
                         <ul class="footer-links">
-                            <li><a href="#">@Html.ActionLink("Map", "ShowMap", "Home", null)</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li class="button">@Html.ActionLink("Our Agents", "AgentLists", "Home", null)</li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li>@Html.ActionLink("Agent SignUp", "SignUp", "Home", null)</li>
+                            <li>@Html.ActionLink("Our Agents", "AgentLists", "Home", null)</li>
+
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -548,11 +301,11 @@
                         <div class="text-widget">
                             <span>45 Park Avenue, Tampa</span> <br>
                             Phone: <span>(123) 123-456 </span><br>
-                            E-Mail:<span> <a href="#">office@example.com</a> </span><br>
+                            E-Mail:<span>office@example.com</span><br>
                         </div>
 
                         <ul class="social-icons margin-top-20">
-                            <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                            <li><a class="facebook" href=""><i class="icon-facebook"></i></a></li>
                             <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
                             <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
                             <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
