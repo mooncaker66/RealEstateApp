@@ -127,20 +127,15 @@ namespace RealEstateApp.Controllers
 
         public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="" )
         {
-            var ShowMapModel = new ShowMapViewModel()
+            var model = new ShowMapViewModel()
             {
                 ListingType=listingType,
                 HousingType=housingType,
                 Address=address
             };
-            return View(ShowMapModel);
-        }
-        [HttpPost]
-        public IActionResult ShowMap(ShowMapViewModel model)
-        {
             ViewBag.lat = "-34.397";
             ViewBag.lng = "150.644";
-            var searchResult= _searchServices.Search(model.ListingType, model.HousingType, model.Address);
+            var searchResult = _searchServices.Search(model.ListingType, model.HousingType, model.Address);
             if (searchResult.Any())
             {
                 var listingViewModels = _mapper.Map<List<ListingViewModel>>(searchResult);
@@ -160,7 +155,7 @@ namespace RealEstateApp.Controllers
                     location.Address = $"{listing.House.Street}, {listing.House.City}, {listing.House.State}";
                     locations.Add(location);
                     listing.ImageSrcs = new List<string>();
-                    if (listing.House.HouseImages!= null)
+                    if (listing.House.HouseImages != null)
                     {
                         foreach (var item in listing.House.HouseImages)
                         {
@@ -168,16 +163,20 @@ namespace RealEstateApp.Controllers
                             var ImageSrc = $"data:image/jpeg; base64, {base64}";
                             listing.ImageSrcs.Add(ImageSrc);
                         }
-                       
+
                     }
-                    
+
                 }
                 ViewBag.listingViewModels = listingViewModels;
 
                 ViewBag.locations = locations.ToArray();
             }
-
-            return ShowMap();
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult ShowMap(ShowMapViewModel model)
+        {
+            return ShowMap(model.ListingType, model.HousingType, model.Address);
         }
 
 
