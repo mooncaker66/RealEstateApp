@@ -32,32 +32,6 @@
                     <div id="map" data-map-zoom="4" data-map-scroll="true">
                         <!-- map goes here -->
                     </div>
-                    <!-- Map -->
-                    @*<div id="map-container">
-                            <div id="map" data-map-zoom="4" data-map-scroll="true">
-                        <div class="row">
-                    <div class="col-md-6">
-                        <div id="map" style="height:400px; width:400px;"></div>
-                        <script>
-                            let map;
-
-                            function initMap() {
-                                map = new google.maps.Map(document.getElementById("map"), {
-                                    /**/
-                                    center: { lat: @ViewBag.lat, lng: @ViewBag.lng},
-                            /**/
-                            zoom: 8,
-                        });
-                    }
-                        </script>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl2L2Ye4W4DaftxwYg3VrBCHR61trmhUw&callback=initMap&libraries=&v=weekly"
-                                async></script>
-                    </div>*@
-
-
-                    @*</div>*@
-                    <!-- map goes here -->
-                    @*</div>*@
 
                     <!-- Map Navigation -->
                     <a href="#" id="geoLocation" title="Your location"></a>
@@ -66,7 +40,6 @@
                         <li><a href="#" id="nextpoint" title="Next point on mp">Next</a></li>
                     </ul>
                 </div>
-
             </div>
 
 
@@ -569,7 +542,7 @@
                 // Main Main
                 // ----------------------------------------------- //
                 function mainMap() {
-
+                   
                     function locationData(locationURL, locationPrice, locationPriceDetails, locationImg, locationTitle, locationAddress) {
                         return ('<a href="' + locationURL + '" class="listing-img-container"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="listing-img-content"><span class="listing-price">' + locationPrice + '<i>' + locationPriceDetails + '</i></span></div><img src="' + locationImg + '" alt=""></a><div class="listing-content"><div class="listing-title"><h4><a href="#">' + locationTitle + '</a></h4><p>' + locationAddress + '</p></div></div>')
                     }
@@ -583,7 +556,7 @@
                             locations[i] = [locationData('single-property-page-1.html', '$275,000', '$520 / sq ft', 'images/listing-01.jpg', 'Eagle Apartmets', "9364 School St. Lynchburg, NY "), array[i].lat, array[i].lng, 1, markerIcon]
                         }
                     }
-
+                    alert('locations populated');
 
                     var mapZoomAttr = $('#map').attr('data-map-zoom');
                     var mapScrollAttr = $('#map').attr('data-map-scroll');

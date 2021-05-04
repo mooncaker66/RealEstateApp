@@ -148,8 +148,8 @@ namespace RealEstateApp.Controllers
                 {
                     var location = new LocationData();
                     geocodeResponse = _mapService.GetGeoCodeByAddress(listing.House.Street, listing.House.City, listing.House.State);
-                    location.Lat = geocodeResponse.results[0].geometry.location.lat;
-                    location.Lng = geocodeResponse.results[0].geometry.location.lng;
+                    location.lat = geocodeResponse.results[0].geometry.location.lat;
+                    location.lat = geocodeResponse.results[0].geometry.location.lng;
                     location.Price = listing.Price.ToString("c2");
                     location.Community = listing.House.Community;
                     location.Address = $"{listing.House.Street}, {listing.House.City}, {listing.House.State}";
