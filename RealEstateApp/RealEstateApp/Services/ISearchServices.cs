@@ -5,6 +5,9 @@ namespace RealEstateApp.Services
 {
     public interface ISearchServices
     {
-        List<Listing> Search(int listingType, int propertyType, string address, string minArea="", string maxArea = null, string minPrice = null, string maxPrice = null, string age = null, int room = 0, int bed = 0, int bath = 0, bool hasAir = false, bool hasPool = false, bool hasHeating = false, bool hasLaundry = false, bool hasGym = false, bool hasParking = false, bool hasBasement = false);
+        public List<Listing> Search(int? listingType=null, int? propertyType = null, string address = null, string minarea = null, string maxarea = null,
+                                    string minprice = null, string maxprice = null, string age = null, int? room = null, int? bed = null, int? bath = null, bool hasair = false,
+                                    bool haspool = false, bool hasheating = false, bool haslaundry = false, bool hasgym = false, bool hasparking = false,
+                                    bool hasbasement = false);
     }
 }

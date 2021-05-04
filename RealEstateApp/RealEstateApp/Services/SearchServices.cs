@@ -16,14 +16,21 @@ namespace RealEstateApp.Services
         }
 
 
-        public List<Listing> Search(int listingType, int propertyType, string address, string minarea, string maxarea,
-                                    string minprice, string maxprice , string age , int room , int bed , int bath , bool hasair ,
+        public List<Listing> Search(int? listingType, int? propertyType, string address, string minarea, string maxarea,
+                                    string minprice, string maxprice , string age , int? room , int? bed , int? bath , bool hasair ,
                                     bool haspool , bool hasheating , bool haslaundry , bool hasgym , bool hasparking ,
                                     bool hasbasement )
         {
             var query = _realEstateDbContext.Listings
-                .Include(l => l.House).ThenInclude(h=>h.HouseImages).Where(i => i.ListingType == listingType
-                && i.House.PropertyType == propertyType );
+                .Include(l => l.House).ThenInclude(h=>h.HouseImages).AsEnumerable();
+            if (listingType!=null)
+            {
+                query = query.Where(i => i.ListingType == listingType.Value);
+            }
+            if (propertyType != null)
+            {
+                query = query.Where(i => i.House.PropertyType == propertyType);
+            }
             if (!string.IsNullOrWhiteSpace(address))
             {
                 query = query.Where(i=>i.House.Street.Contains(address) || i.House.City.Contains(address) || i.House.State.Contains(address) || i.House.ZipCode.Contains(address));
@@ -37,6 +44,10 @@ namespace RealEstateApp.Services
             {
                 int maxsqft = int.Parse(maxarea);
                 query = query.Where(i => i.House.SquareFeet <= maxsqft);
+            }
+            if (hasair)
+            {
+                query = query.Where(i => i.House.HasAirCondition);
             }
             return query.ToList();
         }

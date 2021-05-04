@@ -125,10 +125,10 @@ namespace RealEstateApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="", string minarea="",string maxarea="",
-                                    string minprice="",string maxprice="",string age="", int room=0,int bed=0, int bath=0, bool hasair=false,
-                                    bool haspool=false,bool hasheating=false,bool haslaundry = false, bool hasgym = false, bool hasparking=false,
-                                    bool hasbasement=false)
+        public IActionResult ShowMap(int? listingType=null, int? housingType = null, string address ="", string minarea="",string maxarea="",
+                                    string minprice="",string maxprice="",string age="", int? room=null,int? bed=null, int? bath=null, bool hasair= false,
+                                    bool haspool=false,bool hasheating= false, bool haslaundry = false, bool hasgym = false, bool hasparking= false,
+                                    bool hasbasement= false)
         {
             var model = new ShowMapViewModel()
             {

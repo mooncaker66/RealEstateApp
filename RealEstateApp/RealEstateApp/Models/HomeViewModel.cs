@@ -8,10 +8,10 @@ namespace RealEstateApp.Models
 {
     public class HomeViewModel
     {
-        public int ListingType { get; set; }
+        public int? ListingType { get; set; }
         public string Address { get; set; }
 
-        public int HousingType { get; set; }
+        public int? HousingType { get; set; }
 
         public List<ListingViewModel> ListingViewModels { get; set; }
         public HomeViewModel()
