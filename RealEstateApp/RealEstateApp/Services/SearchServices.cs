@@ -16,7 +16,7 @@ namespace RealEstateApp.Services
         }
 
 
-        public List<Listing> Search(int listingType, int propertyType, string address)
+        public List<Listing> Search(int listingType, int propertyType, string address, string minarea)
         {
             var query = _realEstateDbContext.Listings
                 .Include(l => l.House).ThenInclude(h=>h.HouseImages).Where(i => i.ListingType == listingType
@@ -24,6 +24,11 @@ namespace RealEstateApp.Services
             if (!string.IsNullOrWhiteSpace(address))
             {
                 query = query.Where(i=>i.House.Street.Contains(address) || i.House.City.Contains(address) || i.House.State.Contains(address) || i.House.ZipCode.Contains(address));
+            }
+            if(!string.IsNullOrWhiteSpace(minarea))
+            {
+                int minsqft = int.Parse(minarea);
+                query = query.Where(i => i.House.SquareFeet >= minsqft);
             }
             return query.ToList();
         }

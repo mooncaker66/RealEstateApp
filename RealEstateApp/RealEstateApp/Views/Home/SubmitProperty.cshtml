@@ -59,8 +59,8 @@
                                         <h5>Status</h5>
                                         <select asp-for="ListingType" class="chosen-select-no-single">
                                             <option label="blank"></option>
-                                            <option>For Sale</option>
-                                            <option>For Rent</option>
+                                            <option value="1">For Sale</option>
+                                            <option value="2">For Rent</option>
                                         </select>
                                     </div>
 
@@ -69,11 +69,11 @@
                                         <h5>Type</h5>
                                         <select asp-for="House.PropertyType" class="chosen-select-no-single">
                                             <option label="blank"></option>
-                                            <option>Apartment</option>
-                                            <option>House</option>
-                                            <option>Commercial</option>
-                                            <option>Garage</option>
-                                            <option>Lot</option>
+                                            <option value="1">Apartment</option>
+                                            <option value="2">House</option>
+                                            <option value="3">Commercial</option>
+                                            <option value="4">Garage</option>
+                                            <option value="5">Lot</option>
                                         </select>
                                     </div>
 
@@ -218,20 +218,20 @@
                                 <h5 class="margin-top-30">Other Features <span>(optional)</span></h5>
                                 <div class="checkboxes in-row margin-bottom-20">
 
-                                    <input asp-for="House.HasAirCondition" id="check-2" type="checkbox" name="check">
+                                    <input asp-for="House.HasAirCondition" id="check-2" type="checkbox">
                                     <label for="check-2">Air Conditioning</label>
 
-                                    <input asp-for="House.HasPool" id="check-3" type="checkbox" name="check">
+                                    <input asp-for="House.HasPool" id="check-3" type="checkbox">
                                     <label for="check-3">Swimming Pool</label>
 
-                                    <input asp-for="House.HasHeating" id="check-4" type="checkbox" name="check">
+                                    <input asp-for="House.HasHeating" id="check-4" type="checkbox">
                                     <label for="check-4">Central Heating</label>
 
-                                    <input asp-for="House.HasLaudry" id="check-5" type="checkbox" name="check">
+                                    <input asp-for="House.HasLaudry" id="check-5" type="checkbox">
                                     <label for="check-5">Laundry Room</label>
 
 
-                                    <input asp-for="House.HasGym" id="check-6" type="checkbox" name="check">
+                                    <input asp-for="House.HasGym" id="check-6" type="checkbox">
                                     <label for="check-6">Gym</label>
 
 

@@ -125,17 +125,18 @@ namespace RealEstateApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="" )
+        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="", string minarea="" )
         {
             var model = new ShowMapViewModel()
             {
                 ListingType=listingType,
                 HousingType=housingType,
-                Address=address
+                Address=address,
+                MinArea = minarea
             };
             ViewBag.lat = "-34.397";
             ViewBag.lng = "150.644";
-            var searchResult = _searchServices.Search(model.ListingType, model.HousingType, model.Address);
+            var searchResult = _searchServices.Search(model.ListingType, model.HousingType, model.Address, model.MinArea);
             if (searchResult.Any())
             {
                 var listingViewModels = _mapper.Map<List<ListingViewModel>>(searchResult);
@@ -176,7 +177,7 @@ namespace RealEstateApp.Controllers
         [HttpPost]
         public IActionResult ShowMap(ShowMapViewModel model)
         {
-            return ShowMap(model.ListingType, model.HousingType, model.Address);
+            return ShowMap(model.ListingType, model.HousingType, model.Address, model.MinArea);
         }
 
 

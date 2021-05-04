@@ -12,10 +12,11 @@ namespace RealEstateApp.Models
         public int ListingType { get; set; }
 
         public int HousingType { get; set; }
-        public List<Listing> SearchResults { get; set; }
+        public string MinArea { get; set; }
+        public List<ListingViewModel> SearchResults { get; set; }
         public ShowMapViewModel()
         {
-            SearchResults = new List<Listing>();
+            SearchResults = new List<ListingViewModel>();
             Address = "";
         }
     }
