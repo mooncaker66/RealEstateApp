@@ -17,6 +17,7 @@
 
     <link href="~/css/style.css" rel="stylesheet" />
     <link href="~/css/color.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -53,31 +54,24 @@
                 </div>
             </div>
         </div>
-
-        <div class="container">
-            <div class="row margin-bottom-50">
-                <div class="col-md-12">
-
-                    <!-- Slider -->
-                    <div class="property-slider default">
-                        @foreach (var img in Model.ImageSrcs)
-                        {
-                            <a src='@img' class="item mfp-gallery"></a>
-                        }
-
+        @if (@Model.ImageSrcs != null && @Model.ImageSrcs.Count > 0)
+        {
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="@Model.ImageSrcs[0]" alt="">
                     </div>
-
-                    <!-- Slider Thumbs -->
-                    <div class="property-slider-nav">
-                        @foreach (var img in Model.ImageSrcs)
-                        {
-                            <div class="item"><img src='@img' alt=""></div>
-                        }
-                    </div>
+                    @for (int i = 1; i < Model.ImageSrcs.Count; i++)
+                    {
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="@Model.ImageSrcs[i]" alt="">
+                        </div>
+                    }
 
                 </div>
             </div>
-        </div>
+        }
+
 
 
         <div class="container">
@@ -261,7 +255,7 @@
                             <!-- Agent Widget -->
                             <div class="agent-widget">
                                 <div class="agent-title">
-                                    <div class="agent-photo"><img src="images/agent-avatar.jpg" alt="" /></div>
+                                    <div class="agent-photo"><img src="~/images/agent-avatar.jpg" alt="" /></div>
                                     <div class="agent-details">
                                         <h4><a href="#">Jennie Wilson</a></h4>
                                         <span><i class="sl sl-icon-call-in"></i>(123) 123-456</span>
@@ -307,7 +301,7 @@
                                                 </ul>
                                             </div>
 
-                                            <img src="images/listing-01.jpg" alt="">
+                                            <img src="~/images/listing-01.jpg" alt="">
                                         </a>
 
                                     </div>
@@ -335,7 +329,7 @@
                                                 </ul>
                                             </div>
 
-                                            <img src="images/listing-02.jpg" alt="">
+                                            <img src="~/images/listing-02.jpg" alt="">
                                         </a>
 
                                     </div>
@@ -363,7 +357,7 @@
                                                 </ul>
                                             </div>
 
-                                            <img src="images/listing-03.jpg" alt="">
+                                            <img src="~/images/listing-03.jpg" alt="">
                                         </a>
 
                                     </div>
@@ -448,7 +442,6 @@
         <!-- Scripts
     ================================================== -->
 
-        <script type="text/javascript" src="~/scripts/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="~/scripts/jquery-migrate-3.3.1.min.js"></script>
         <script type="text/javascript" src="~/scripts/chosen.min.js"></script>
         <script type="text/javascript" src="~/scripts/magnific-popup.min.js"></script>
@@ -460,14 +453,15 @@
         <script type="text/javascript" src="~/scripts/tooltips.min.js"></script>
         <script type="text/javascript" src="~/scripts/masonry.min.js"></script>
         <script type="text/javascript" src="~/scripts/custom.js"></script>
-
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <!-- Maps -->
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
         <script type="text/javascript" src="~/scripts/infobox.min.js"></script>
         <script type="text/javascript" src="~/scripts/markerclusterer.js"></script>
         <script type="text/javascript" src="~/scripts/maps.js"></script>
 
-        <!-- Date Range Picker - docs: http://www.daterangepicker.com/ -->
+        <!-- Date Range Picker - docs: https://www.daterangepicker.com/ -->
         <script src="~/scripts/moment.min.js"></script>
         <script src="~/scripts/daterangepicker.js"></script>
         <script>
