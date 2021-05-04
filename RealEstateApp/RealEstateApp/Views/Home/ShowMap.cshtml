@@ -83,7 +83,7 @@
 
                         <!-- Main Navigation -->
                         <nav id="navigation" class="style-1">
-                            
+
                         </nav>
                         <div class="clearfix"></div>
                         <!-- Main Navigation / End -->
@@ -94,7 +94,7 @@
                     <div class="right-side">
                         <!-- Header Widget -->
                         <div class="header-widget">
-            
+
                         </div>
                         <!-- Header Widget / End -->
                     </div>
@@ -176,7 +176,7 @@
 
                                             <!-- Main Search Input -->
                                             <div class="col-fs-6">
-                                                <input type="text" asp-for="Address" placeholder="Enter address e.g. street, city or state"/>
+                                                <input type="text" asp-for="Address" placeholder="Enter address e.g. street, city or state" />
                                             </div>
 
                                             <!-- Status -->
@@ -210,7 +210,7 @@
 
                                                 <!-- Select Input -->
                                                 <div class="select-input disabled-first-option">
-                                                    <input asp-for="MinArea "type="text" placeholder="Min Area" data-unit="Sq Ft">
+                                                    <input asp-for="MinArea " type="text" placeholder="Min Area" data-unit="Sq Ft">
                                                     <select>
                                                         <option>Min Area</option>
                                                         <option>300</option>
@@ -253,7 +253,7 @@
 
                                                 <!-- Select Input -->
                                                 <div class="select-input disabled-first-option">
-                                                    <input asp-for="MinPrice"type="text" placeholder="Min Price" data-unit="USD">
+                                                    <input asp-for="MinPrice" type="text" placeholder="Min Price" data-unit="USD">
                                                     <select>
                                                         <option>Min Price</option>
                                                         <option>1 000</option>
@@ -289,7 +289,7 @@
 
                                                 <!-- Select Input -->
                                                 <div class="select-input disabled-first-option">
-                                                    <input asp-for="MaxPrice"type="text" placeholder="Max Price" data-unit="USD">
+                                                    <input asp-for="MaxPrice" type="text" placeholder="Max Price" data-unit="USD">
                                                     <select>
                                                         <option>Max Price</option>
                                                         <option>1 000</option>
@@ -335,7 +335,7 @@
 
                                                     <!-- Age of Home -->
                                                     <div class="col-fs-3">
-                                                        <select asp-for="Age"data-placeholder="Age of Home" class="chosen-select-no-single">
+                                                        <select asp-for="Age" data-placeholder="Age of Home" class="chosen-select-no-single">
                                                             <option label="blank"></option>
                                                             <option>Age of Home (Any)</option>
                                                             <option>0 - 1 Years</option>
@@ -349,7 +349,7 @@
 
                                                     <!-- Rooms Area -->
                                                     <div class="col-fs-3">
-                                                        <select asp-for="Room"data-placeholder="Rooms" class="chosen-select-no-single">
+                                                        <select asp-for="Room" data-placeholder="Rooms" class="chosen-select-no-single">
                                                             <option label="blank"></option>
                                                             <option>Rooms (Any)</option>
                                                             <option>1</option>
@@ -362,7 +362,7 @@
 
                                                     <!-- Min Area -->
                                                     <div class="col-fs-3">
-                                                        <select asp-for="Bed"data-placeholder="Beds" class="chosen-select-no-single">
+                                                        <select asp-for="Bed" data-placeholder="Beds" class="chosen-select-no-single">
                                                             <option label="blank"></option>
                                                             <option>Beds (Any)</option>
                                                             <option>1</option>
@@ -375,7 +375,7 @@
 
                                                     <!-- Max Area -->
                                                     <div class="col-fs-3">
-                                                        <select asp-for="Bath"data-placeholder="Baths" class="chosen-select-no-single">
+                                                        <select asp-for="Bath" data-placeholder="Baths" class="chosen-select-no-single">
                                                             <option label="blank"></option>
                                                             <option>Baths (Any)</option>
                                                             <option>1</option>
@@ -391,26 +391,26 @@
                                                 <!-- Checkboxes -->
                                                 <div class="checkboxes in-row">
 
-                                                    <input asp-for="HasAir"id="check-2" type="checkbox">
+                                                    <input asp-for="HasAir" id="check-2" type="checkbox">
                                                     <label for="check-2">Air Conditioning</label>
 
-                                                    <input asp-for="HasPool"id="check-3" type="checkbox">
+                                                    <input asp-for="HasPool" id="check-3" type="checkbox">
                                                     <label for="check-3">Swimming Pool</label>
 
-                                                    <input asp-for="HasHeating"id="check-4" type="checkbox">
+                                                    <input asp-for="HasHeating" id="check-4" type="checkbox">
                                                     <label for="check-4">Central Heating</label>
 
-                                                    <input asp-for="HasLaundry"id="check-5" type="checkbox">
+                                                    <input asp-for="HasLaundry" id="check-5" type="checkbox">
                                                     <label for="check-5">Laundry Room</label>
 
 
-                                                    <input asp-for="HasGym"id="check-6" type="checkbox">
+                                                    <input asp-for="HasGym" id="check-6" type="checkbox">
                                                     <label for="check-6">Gym</label>
 
-                                                    <input asp-for="HasParking"id="check-7" type="checkbox">
+                                                    <input asp-for="HasParking" id="check-7" type="checkbox">
                                                     <label for="check-7">Parking Lots</label>
 
-                                                    <input asp-for="HasBasement"id="check-8" type="checkbox">
+                                                    <input asp-for="HasBasement" id="check-8" type="checkbox">
                                                     <label for="check-8">Basement</label>
 
                                                 </div>
@@ -458,7 +458,7 @@
                                 <!-- Listing Item -->
                                 <div class="listing-item">
 
-                                    <a href="single-property-page-1.html" class="listing-img-container">
+                                    <a href="@Url.Action("ShowDetails", "Home", new { id = listingItem.ID})" class="listing-img-container">
 
                                         <div class="listing-badges">
                                             <span class="featured">Featured</span>
@@ -474,16 +474,16 @@
                                         </div>
 
                                         <div class="listing-img-content">
-                                            <span class="listing-price">@listingItem.Price</span>
-                                            
+                                            <span class="listing-price">@listingItem.Price.ToString("c2")</span>
+
                                         </div>
-                                        
+
                                         <div class="listing-carousel">
                                             @foreach (var img in listingItem.ImageSrcs)
                                             {
                                                 <div><img src="@img" alt=""></div>
                                             }
-                                          
+
                                         </div>
                                     </a>
 
@@ -515,19 +515,14 @@
                         }
 
                         <!-- Listing Item -->
-                        
                         <!-- Listing Item / End -->
                         <!-- Listing Item -->
-                        
                         <!-- Listing Item / End -->
                         <!-- Listing Item -->
-                        
                         <!-- Listing Item / End -->
                         <!-- Listing Item -->
-                        
                         <!-- Listing Item / End -->
                         <!-- Listing Item -->
-                        
                         <!-- Listing Item / End -->
 
                     </div>
