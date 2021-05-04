@@ -16,7 +16,10 @@ namespace RealEstateApp.Services
         }
 
 
-        public List<Listing> Search(int listingType, int propertyType, string address, string minarea)
+        public List<Listing> Search(int listingType, int propertyType, string address, string minarea, string maxarea,
+                                    string minprice, string maxprice , string age , int room , int bed , int bath , bool hasair ,
+                                    bool haspool , bool hasheating , bool haslaundry , bool hasgym , bool hasparking ,
+                                    bool hasbasement )
         {
             var query = _realEstateDbContext.Listings
                 .Include(l => l.House).ThenInclude(h=>h.HouseImages).Where(i => i.ListingType == listingType
@@ -29,6 +32,11 @@ namespace RealEstateApp.Services
             {
                 int minsqft = int.Parse(minarea);
                 query = query.Where(i => i.House.SquareFeet >= minsqft);
+            }
+            if (!string.IsNullOrWhiteSpace(maxarea))
+            {
+                int maxsqft = int.Parse(maxarea);
+                query = query.Where(i => i.House.SquareFeet <= maxsqft);
             }
             return query.ToList();
         }

@@ -125,18 +125,39 @@ namespace RealEstateApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="", string minarea="" )
+        public IActionResult ShowMap(int listingType=0, int housingType=0, string address ="", string minarea="",string maxarea="",
+                                    string minprice="",string maxprice="",string age="", int room=0,int bed=0, int bath=0, bool hasair=false,
+                                    bool haspool=false,bool hasheating=false,bool haslaundry = false, bool hasgym = false, bool hasparking=false,
+                                    bool hasbasement=false)
         {
             var model = new ShowMapViewModel()
             {
                 ListingType=listingType,
                 HousingType=housingType,
                 Address=address,
-                MinArea = minarea
+                MinArea = minarea,
+                MaxArea = maxarea,
+                MinPrice = minprice,
+                MaxPrice = maxprice,
+                Age = age,
+                Room = room,
+                Bed = bed,
+                Bath = bath,
+                HasAir = hasair,
+                HasPool = haspool,
+                HasHeating = hasheating,
+                HasLaundry = haslaundry,
+                HasGym = hasgym,
+                HasParking = hasparking,
+                HasBasement = hasbasement
             };
             ViewBag.lat = "-34.397";
             ViewBag.lng = "150.644";
-            var searchResult = _searchServices.Search(model.ListingType, model.HousingType, model.Address, model.MinArea);
+
+            var searchResult = _searchServices.Search(model.ListingType, model.HousingType, model.Address, model.MinArea, model.MaxArea,model.MinPrice,
+                model.MaxPrice,model.Age,model.Room,model.Bed,model.Bath,model.HasAir,model.HasPool,model.HasHeating,model.HasLaundry,model.HasGym,
+                model.HasParking,model.HasBasement);
+
             if (searchResult.Any())
             {
                 var listingViewModels = _mapper.Map<List<ListingViewModel>>(searchResult);
@@ -177,7 +198,9 @@ namespace RealEstateApp.Controllers
         [HttpPost]
         public IActionResult ShowMap(ShowMapViewModel model)
         {
-            return ShowMap(model.ListingType, model.HousingType, model.Address, model.MinArea);
+            return ShowMap(model.ListingType, model.HousingType, model.Address, model.MinArea, model.MaxArea, model.MinPrice,
+                model.MaxPrice, model.Age, model.Room, model.Bed, model.Bath, model.HasAir, model.HasPool, model.HasHeating, model.HasLaundry, model.HasGym,
+                model.HasParking, model.HasBasement);
         }
 
 
