@@ -22,220 +22,157 @@
         <label class="text-danger">@ViewBag.error</label>
     }
     <!-- Wrapper -->
-    <div id="wrapper">
+<div id="wrapper">
 
 
-        <!-- Compare Properties Widget
-        ================================================== -->
-        <div class="compare-slide-menu">
-
-            <div class="csm-trigger"></div>
-
-            <div class="csm-content">
-                <h4>Compare Properties <div class="csm-mobile-trigger"></div></h4>
-
-                <div class="csm-properties">
-
-                    <!-- Property -->
-                    <div class="listing-item compact">
-                        <a href="single-property-page-2.html" class="listing-img-container">
-                            <div class="remove-from-compare"><i class="fa fa-close"></i></div>
-                            <div class="listing-badges">
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">Eagle Apartments <i>$420,000</i></span>
-                            </div>
-                            <img src="images/listing-01.jpg" alt="">
-                        </a>
-                    </div>
-
-                    <!-- Property -->
-                    <div class="listing-item compact">
-                        <a href="single-property-page-2.html" class="listing-img-container">
-                            <div class="remove-from-compare"><i class="fa fa-close"></i></div>
-                            <div class="listing-badges">
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">Selway Apartments <i>$420,000</i></span>
-                            </div>
-                            <img src="images/listing-03.jpg" alt="">
-                        </a>
-                    </div>
-
-                    <!-- Property -->
-                    <div class="listing-item compact">
-                        <a href="single-property-page-2.html" class="listing-img-container">
-                            <div class="remove-from-compare"><i class="fa fa-close"></i></div>
-                            <div class="listing-badges">
-                                <span>For Sale</span>
-                            </div>
-                            <div class="listing-img-content">
-                                <span class="listing-compact-title">Oak Tree Villas <i>$535,000</i></span>
-                            </div>
-                            <img src="images/listing-05.jpg" alt="">
-                        </a>
-                    </div>
-
-                </div>
-
-                <div class="csm-buttons">
-                    <a href="compare-properties.html" class="button">Compare</a>
-                    <a href="#" class="button reset">Reset</a>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Contact
-        ================================================== -->
-        <!-- Container -->
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-
-          
-
-                    <!--Tab -->
-                    <div class="my-account style-1 margin-top-5 margin-bottom-40">
+    <!-- Compare Properties Widget
+    ================================================== -->
 
 
-                        <div class="tabs-container alt">
+    <!-- Contact
+    ================================================== -->
+    <!-- Container -->
+    <div class="container">
 
-                            <!-- Login -->
-                            <div class="tab-content" id="tab1" style="display: none;">
-                                <form asp-action="Login" method="post" class="login">
-
-                                    <p class="form-row form-row-wide">
-                                        <label for="username">
-                                            Email Address:
-                                            <i class="im im-icon-Male"></i>
-                                            <input asp-for="EmailAddress" type="text" class="input-text"/>
-                                        </label>
-                                    </p>
-
-                                    <p class="form-row form-row-wide">
-                                        <label for="password">
-                                            Password:
-                                            <i class="im im-icon-Lock-2"></i>
-                                            <input asp-for="Password" class="input-text" type="password"/>
-                                        </label>
-                                    </p>
-
-                                    <p class="form-row">
-                                        <input type="submit" class="button border margin-top-10" name="login" value="Login" />
-
-                                        <label for="rememberme" class="rememberme">
-                                            <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me
-                                        </label>
-                                    </p>
-                                    @Html.ActionLink("Register","Register")
-          
-
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
 
 
 
-                </div>
-            </div>
+                <!--Tab -->
+                <div class="my-account style-1 margin-top-5 margin-bottom-40">
 
-        </div>
-        <!-- Container / End -->
-        <!-- Footer
-        ================================================== -->
-        <div class="margin-top-55"></div>
 
-        <div id="footer">
-            <!-- Main -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-6">
-                        <img class="footer-logo" src="images/logo.png" alt="">
-                        <br><br>
-                        <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-                    </div>
+                    <div class="tabs-container alt">
 
-                    <div class="col-md-4 col-sm-6 ">
-                        <h4>Helpful Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Login</a></li>
-                            <li><a href="#">Sign Up</a></li>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Add Property</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
+                        <!-- Login -->
+                        <div class="tab-content" id="tab1" style="display: none;">
+                            <form asp-action="Login" method="post" class="login">
 
-                        <ul class="footer-links">
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Our Agents</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
+                                <p class="form-row form-row-wide">
+                                    <label for="username">
+                                        Email Address:
+                                        <i class="im im-icon-Male"></i>
+                                        <input asp-for="EmailAddress" type="text" class="input-text" />
+                                    </label>
+                                </p>
 
-                    <div class="col-md-3  col-sm-12">
-                        <h4>Contact Us</h4>
-                        <div class="text-widget">
-                            <span>12345 Little Lonsdale St, Melbourne</span> <br>
-                            Phone: <span>(123) 123-456 </span><br>
-                            E-Mail:<span> <a href="#">office@example.com</a> </span><br>
+                                <p class="form-row form-row-wide">
+                                    <label for="password">
+                                        Password:
+                                        <i class="im im-icon-Lock-2"></i>
+                                        <input asp-for="Password" class="input-text" type="password" />
+                                    </label>
+                                </p>
+
+                                <p class="form-row">
+                                    <input type="submit" class="button border margin-top-10" name="login" value="Login" />
+
+                                    <label for="rememberme" class="rememberme">
+                                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me
+                                    </label>
+                                </p>
+                                @Html.ActionLink("Register", "Register")
+
+
+                            </form>
                         </div>
 
-                        <ul class="social-icons margin-top-20">
-                            <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                            <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-                            <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-                <!-- Copyright -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="copyrights">© 2016 Findeo. All Rights Reserved.</div>
                     </div>
                 </div>
+
+
 
             </div>
-
         </div>
-        <!-- Footer / End -->
-        <!-- Back To Top Button -->
-        <div id="backtotop"><a href="#"></a></div>
-
-
-        <!-- Scripts
-        ================================================== -->
-        <script type="text/javascript" src="~/scripts/jquery-3.5.1.min.js"></script>
-        <script type="text/javascript" src="~/scripts/jquery-migrate-3.3.1.min.js"></script>
-        <script type="text/javascript" src="~/scripts/chosen.min.js"></script>
-        <script type="text/javascript" src="~/scripts/magnific-popup.min.js"></script>
-        <script type="text/javascript" src="~/scripts/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="~/scripts/rangeSlider.js"></script>
-        <script type="text/javascript" src="~/scripts/sticky-kit.min.js"></script>
-        <script type="text/javascript" src="~/scripts/slick.min.js"></script>
-        <script type="text/javascript" src="~/scripts/masonry.min.js"></script>
-        <script type="text/javascript" src="~/scripts/mmenu.min.js"></script>
-        <script type="text/javascript" src="~/scripts/tooltips.min.js"></script>
-        <script type="text/javascript" src="~/scripts/custom.js"></script>
-
-
-
-
 
     </div>
+    <!-- Container / End -->
+    <!-- Footer
+    ================================================== -->
+    <div class="margin-top-55"></div>
+
+    <div id="footer">
+        <!-- Main -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-6">
+                    <i class="fas fa-home"></i>
+                    <br><br>
+                    <p>Everything you need to know when you're looking to buy, rent, or sell - all in one place.</p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 ">
+                    <h4>Helpful Links</h4>
+                    <ul class="footer-links">
+                        <li>@Html.ActionLink("Home", "Index", "Home", null)</li>
+                        <li>@Html.ActionLink("Sign up", "Register", "Account", null)</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", null)</li>
+                        <li>@Html.ActionLink("Submit Property", "SubmitProperty", "Home", null)</li>
+                    </ul>
+
+                    <ul class="footer-links">
+                        <li>@Html.ActionLink("Agent SignUp", "SignUp", "Home", null)</li>
+                        <li>@Html.ActionLink("Our Agents", "AgentLists", "Home", null)</li>
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="col-md-3  col-sm-12">
+                    <h4>Contact Us</h4>
+                    <div class="text-widget">
+                        <span>45 Park Avenue, Tampa</span> <br>
+                        Phone: <span>(123) 123-456 </span><br>
+                        E-Mail:<span>office@example.com</span><br>
+                    </div>
+
+                    <ul class="social-icons margin-top-20">
+                        <li><a class="facebook" href="www.facebook.com"><i class="icon-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                        <li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyrights">© All Rights Reserved.</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Footer / End -->
+    <!-- Back To Top Button -->
+    <div id="backtotop"><a href="#"></a></div>
+
+
+    <!-- Scripts
+    ================================================== -->
+    <script type="text/javascript" src="~/scripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/jquery-migrate-3.3.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/chosen.min.js"></script>
+    <script type="text/javascript" src="~/scripts/magnific-popup.min.js"></script>
+    <script type="text/javascript" src="~/scripts/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/scripts/rangeSlider.js"></script>
+    <script type="text/javascript" src="~/scripts/sticky-kit.min.js"></script>
+    <script type="text/javascript" src="~/scripts/slick.min.js"></script>
+    <script type="text/javascript" src="~/scripts/masonry.min.js"></script>
+    <script type="text/javascript" src="~/scripts/mmenu.min.js"></script>
+    <script type="text/javascript" src="~/scripts/tooltips.min.js"></script>
+    <script type="text/javascript" src="~/scripts/custom.js"></script>
+
+
+
+
+
+</div>
     <!-- Wrapper / End -->
 
 
